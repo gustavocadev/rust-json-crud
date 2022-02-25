@@ -1,3 +1,5 @@
+#[macro_use]
+extern crate colour;
 use colored::*;
 use serde::{Deserialize, Serialize};
 use serde_json;
@@ -48,7 +50,7 @@ fn write_json(data: &JsonStruct, path: &str) -> Result<(), Box<dyn Error>> {
 
 // create a function to prompt the user for input
 fn input_int(prompt: &str) -> u8 {
-    print!("{}", prompt);
+    green!(prompt);
     io::stdout().flush().unwrap();
     let mut input = String::new();
     io::stdin().read_line(&mut input).unwrap();
@@ -57,7 +59,7 @@ fn input_int(prompt: &str) -> u8 {
 
 // create a function to prompt the user for input
 fn input_str(prompt: &str) -> String {
-    print!("{}", prompt.blue());
+    green!(prompt);
     io::stdout().flush().unwrap();
     let mut input = String::new();
     io::stdin().read_line(&mut input).unwrap();
@@ -66,24 +68,18 @@ fn input_str(prompt: &str) -> String {
 
 // create a menu
 fn menu() -> u8 {
-    println!("{}", "Welcome to the user manager".magenta());
-    println!("{}", "1. Agregar un usuario".cyan());
-    println!("{}", "2. Remove a user".cyan());
-    println!("{}", "3. Edit User".cyan());
-    println!("{}", "4. List all users".cyan());
-    println!("{}", "5. Exit".cyan());
-    print!("{}", "Seleccione una opcion => ".magenta());
-    io::stdout().flush().unwrap();
-
-    let mut choice = String::new();
-
-    io::stdin().read_line(&mut choice).unwrap();
-    let choice = choice.trim().parse::<u8>().unwrap();
+    yellow!("Welcome to the user manager\n");
+    cyan!("1. Agregar un usuario\n");
+    cyan!("2. Eliminar a un usuario\n");
+    cyan!("3. Editar usuario\n");
+    cyan!("4. Listar usuarios\n");
+    cyan!("5. Salir\n");
+    let choice = input_int("Ingrese una opción: ");
     choice
 }
 
 fn main() {
-    println!("{}", "Base de datos escrita en Rust 🦀".green());
+    green!("Base de datos escrita en Rust 🦀\n");
     loop {
         let option = menu();
 
