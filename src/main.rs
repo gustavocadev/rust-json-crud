@@ -48,6 +48,7 @@ fn write_json(data: &JsonStruct, path: &str) -> Result<()> {
 }
 
 // create a function to prompt the user for input
+#[allow(dead_code)]
 fn input_int(prompt: &str) -> u8 {
   green!(prompt);
   io::stdout().flush().unwrap();
@@ -57,6 +58,7 @@ fn input_int(prompt: &str) -> u8 {
 }
 
 // create a function to prompt the user for input
+#[allow(dead_code)]
 fn input_str(prompt: &str) -> String {
   green!(prompt);
   io::stdout().flush().unwrap();
